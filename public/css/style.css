@@ -801,3 +801,26 @@ ul.dropdown-menu li {
   }
 }
 /*# sourceMappingURL=style.css.map */
+
+/* Login Form */
+#loginForm {
+  background-color:#dedede;
+  padding: 15px;
+}
+
+#loginForm input {
+  border-radius: 5px;
+}
+
+#loginForm button {
+  border-radius: 5px;
+}
+
+#loginForm .form-text {
+  font-size: 11px;
+}
+
+#loginForm select {
+  border-radius: 5px;
+  height: 51px;
+}

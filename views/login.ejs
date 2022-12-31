@@ -1,0 +1,51 @@
+<%- include("./partials/head.ejs") %>
+<%- include("./partials/top_menu.ejs") %>
+
+<div class="main-wrapper ">
+<section class="page-title bg-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a href="/" class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Home</a></li>
+            <li class="list-inline-item"><span class="text-white">|</span></li>
+            <li class="list-inline-item"><a href="/users/login" class="text-color text-uppercase text-sm letter-spacing">Login</a></li>
+          </ul>
+           <h1 class="text-lg text-white mt-2">User Login</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Login start -->
+<section class="section services">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-6 text-center">
+				<div class="section-title">
+					<div class="divider mb-3"></div>
+					<h2>Login</h2>
+					<form action="/users/login" method="POST" id="loginForm">
+						<div class="mb-3">
+						  <label for="email" class="form-label">Email address</label>
+						  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+						</div>
+						<div class="mb-3">
+						  <label for="password" class="form-label">Password</label>
+						  <input type="password" class="form-control" id="password" name="password">
+						</div>
+						<div class="mb-3 form-check">
+						  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					  </form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Section Login End -->
+
+<%- include("./partials/footer.ejs") %>
+<%- include("./partials/bottom.ejs") %>

@@ -1,10 +1,11 @@
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
-const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const session = require("express-session");
+const MongoStore = require('connect-mongo');
 
 const pageRouter = require("./routes/pages");
 const usersRouter = require("./routes/users");
@@ -19,8 +20,7 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.set("strictQuery", false);
@@ -34,6 +34,39 @@ mongoose
     throw err;
   });
 
+// session aç
+app.use(
+  session({
+    secret: process.env.APP_SESSION_SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.APP_MONGO_FULL_URL,
+      dbName: process.env.APP_MONGO_DB_NAME,
+    }),
+  })
+);
+
+/* Eğer oturum açılmış ise oturum bilgilerini ayarla */
+app.use(function (req, res, next) {
+  if (req.session.userIN) {
+    const userInfo = {
+      id: req.session.user._id,
+      name: req.session.user.name,
+      email: req.session.user.email,
+      slug: req.session.user.slug,
+      userType: req.session.user.userType,
+    };
+    res.locals.user = userInfo;
+    res.locals.userIN = true;
+  } else {
+    res.locals.user = null;
+    res.locals.userIN = null;
+  }
+  next();
+});
+
+// Route bilgilerini girelim.
 app.use("/", pageRouter);
 app.use("/users", usersRouter);
 

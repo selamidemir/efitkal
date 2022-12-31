@@ -4,3 +4,5 @@ exports.UserTypes = {
     user: "user",
     guest: "guest"
 }
+
+exports.DefaultUserTypes = ["instructor", "user"];

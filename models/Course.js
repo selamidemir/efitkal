@@ -4,7 +4,7 @@ Mongoose modelini tanımlıyoruz. */
 const mongoose = require("mongoose");
 
 const Schema = mongoose.mongoose.Schema;
-const CouseSchema = Schema({
+const CourseSchema = Schema({
   name: {
     type: String,
     require: true,
@@ -19,6 +19,6 @@ const CouseSchema = Schema({
   },
 });
 
-const Couse = mongoose.Model("Course", CouseSchema);
+const Course = mongoose.model("Course", CourseSchema);
 
-module.exports = Couse;
+module.exports = Course;

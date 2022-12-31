@@ -21,3 +21,4 @@ exports.getServices = (req, res) => {
 exports.getTrainer = (req, res) => {
   res.render("trainer", { title: "Trainer - EFitKal", pageName: "trainer" });
 };
+
