@@ -16,14 +16,18 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
 				<li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+				<% if(!userIN) { %>
 				<li class="nav-item"><a class="nav-link" href="/pricing">Memebership</a></li>
+				<% } else { %>
+				<li class="nav-item"><a class="nav-link" href="/users/dashboard">Dashboard</a></li>
+				<% } %>
                 <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
 				<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
 				<% if(userIN) { %> 
 				<li class="nav-item"><a class="nav-link" href="/users/logout">Logout (<%= user.name %>)</a></li>
 				<% } else { %>
                 <li class="nav-item"><a class="nav-link" href="/users/login">Login</a></li>
-				<li class="nav-item"><a class="nav-link" href="/users/register">Register</a></li>
+				<!-- <li class="nav-item"><a class="nav-link" href="/users/register">Register</a></li> -->
 				<% } %>
 			</ul>
 			<div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">

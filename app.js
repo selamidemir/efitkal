@@ -5,10 +5,13 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const session = require("express-session");
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
+const fileupload = require("express-fileupload");
+const methodOverride = require("method-override");
 
-const pageRouter = require("./routes/pages");
-const usersRouter = require("./routes/users");
+const pageRouter = require("./routes/page");
+const userRouter = require("./routes/user");
+const courseRouter = require("./routes/course");
 
 const app = express();
 
@@ -22,6 +25,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(fileupload());
+app.use(methodOverride("_method"));
 
 mongoose.set("strictQuery", false);
 mongoose
@@ -68,7 +73,8 @@ app.use(function (req, res, next) {
 
 // Route bilgilerini girelim.
 app.use("/", pageRouter);
-app.use("/users", usersRouter);
+app.use("/users", userRouter);
+app.use("/courses", courseRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -17,6 +17,14 @@ const CourseSchema = Schema({
     type: Number,
     require: true,
   },
+  photo: {
+    type: String,
+    require: true
+  },
+  instructer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Course = mongoose.model("Course", CourseSchema);
