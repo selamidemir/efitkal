@@ -25,7 +25,6 @@ exports.getLogout = async (req, res) => {
 exports.register = async (req, res) => {
   try {
     const result = validationResult(req);
-    console.log(result);
     if (!result.isEmpty()) throw new Error("Some fields is wrong.");
     const userInfo = {
       name: req.body.name,
@@ -33,7 +32,6 @@ exports.register = async (req, res) => {
       email: req.body.email,
       userType: req.body.userType,
     };
-    console.log(userInfo);
     await User.create(userInfo);
     res.status(200).redirect("/users/login");
   } catch (err) {
@@ -62,8 +60,6 @@ exports.loginUser = async (req, res) => {
         };
         req.session.user = userInfo;
         req.session.userIN = true;
-        console.log("locals : ", res.locals);
-        // res.redirect("/users/" + user._id);
         res.redirect("/");
       } else {
         res.status(400).render("login", {
@@ -125,7 +121,6 @@ exports.dashboard = async = async (req, res) => {
     const courses = user.userType === 'instructor' 
       ? await Course.find({ instructor: userDB._id})
       : userDB.courses;
-    console.log(courses)
     res.render("dashboard", {
       title: "User Dashboard - EFitKal",
       pageName: "dashboard",

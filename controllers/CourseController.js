@@ -30,7 +30,6 @@ exports.getCourse = async (req, res) => {
       : false;
     if (course) {
       const enrolled = user ? user.courses.includes(courseID) : false;
-      console.log(user)
       res.render("course_single", {
         title: course.name,
         pageName: "course",
@@ -149,7 +148,6 @@ exports.edit = async (req, res) => {
   const courseID = req.params.id;
   try {
     const course = await Course.findById(courseID);
-    console.log(course);
     res.status(200).render("add_course", {
       title: "Edit The Course - EFitKal",
       pageName: "add-course",
