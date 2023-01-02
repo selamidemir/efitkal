@@ -43,7 +43,7 @@ mongoose
 app.use(
   session({
     secret: process.env.APP_SESSION_SECRET_KEY,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     store: MongoStore.create({
       mongoUrl: process.env.APP_MONGO_FULL_URL,
@@ -59,7 +59,7 @@ app.use(function (req, res, next) {
       id: req.session.user._id,
       name: req.session.user.name,
       email: req.session.user.email,
-      slug: req.session.user.slug,
+      courses: req.session.user.courses,
       userType: req.session.user.userType,
     };
     res.locals.user = userInfo;

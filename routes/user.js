@@ -52,5 +52,12 @@ router.get("/login", userCheck, UserController.getLogin);
 /* Logout user */
 router.get("/logout", UserController.getLogout);
 
+/* User enroll a course */
+router.get("/enroll/:courseID", UserController.enrollCourse)
 
+/* User release a course */
+router.get("/release/:courseID", UserController.releaseCourse)
+
+/* User dashboard */
+router.get("/dashboard", UserController.dashboard)
 module.exports = router;

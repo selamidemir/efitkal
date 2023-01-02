@@ -13,18 +13,18 @@ const CourseSchema = Schema({
     type: String,
     require: true,
   },
-  price: {
-    type: Number,
-    require: true,
-  },
   photo: {
     type: String,
     require: true
   },
-  instructer: {
+  instructor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 const Course = mongoose.model("Course", CourseSchema);

@@ -824,3 +824,8 @@ ul.dropdown-menu li {
   border-radius: 5px;
   height: 51px;
 }
+
+/* Admin */
+.admin-link a:hover {
+  color:#fe9418;
+}

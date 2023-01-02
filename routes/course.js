@@ -8,8 +8,8 @@ const router = express.Router();
 router.get("/", CourseController.courses);
 router.get("/add", CourseController.add);
 router.get("/:id", CourseController.getCourse);
-router.get("/edit", instructorCheck, CourseController.edit);
-router.delete("/:id", instructorCheck, CourseController.delete);
+router.get("/edit/:id", CourseController.edit);
+router.delete("/:id", CourseController.delete);
 router.post("/", CourseController.create);
 router.put("/:id", instructorCheck, CourseController.update)
 
