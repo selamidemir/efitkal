@@ -5,22 +5,26 @@
 			<div class="col-lg-6 text-center">
 				<div class="section-title">
 					<div class="divider mb-3"></div>
+					<% if(!course) { %> 
 					<h2>Add Course</h2>
-					<form action="/courses" method="POST" id="courseForm" enctype="multipart/form-data">
+					<% } else { %>
+					<h2>Edit Course</h2>
+					<% } %>
+					<form action="/courses<% if(course) {%>/<%=course.id%>?_method=PUT<% } %>" method="POST" id="courseForm" enctype="multipart/form-data">
 						<div class="mb-3">
 						  <label for="name" class="form-label">Name</label>
-						  <input type="name" class="form-control" id="name" name="name" aria-describedby="nameHelp">
+						  <input type="name" class="form-control" id="name" name="name" <% if(course) { %> value=" <%= course.name %>"  <%   }  %>aria-describedby="nameHelp">
 						</div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" aria-describedby="descriptionHelp"></textarea>
+                            <textarea class="form-control" id="description" name="description"  aria-describedby="descriptionHelp"><% if(course) { %> <%= course.description %> <% } %></textarea> 
                           </div>
 						<div class="mb-3">
 						  <label for="price" class="form-label">Price</label>
-						  <input type="number" class="form-control" id="price" name="price">
+						  <input type="number" class="form-control" id="price" name="price" <% if(course) { %> value="<%= course.price %>" <%   }  %>>
 						</div>
 						<div class="mb-3">
-							<label for="photo" class="form-label">Price</label>
+							<label for="photo" class="form-label">Photo</label>
 							<input type="file" class="form-control" id="photo" name="photo">
 						  </div>
 

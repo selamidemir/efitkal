@@ -11,7 +11,7 @@ exports.getContact = (req, res) => {
 };
 
 exports.getPrincing = (req, res) => {
-  if (req.session.userIN) res.redirect("/users/" + req.session.user.id);
+  if (req.session.userIN) res.redirect("/users/dashboard/");
   res.render("pricing", { title: "Pricing - EFitKal", pageName: "pricing" });
 };
 

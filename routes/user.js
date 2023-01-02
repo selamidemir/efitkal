@@ -47,17 +47,17 @@ router.post(
 router.get("/register", userCheck, UserController.getRegister);
 
 /* Login user page */
-router.get("/login", userCheck, UserController.getLogin);
+router.get("/login", UserController.getLogin);
 
 /* Logout user */
-router.get("/logout", UserController.getLogout);
+router.get("/logout", userCheck, UserController.getLogout);
 
 /* User enroll a course */
-router.get("/enroll/:courseID", UserController.enrollCourse)
+router.get("/enroll/:courseID", userCheck, UserController.enrollCourse)
 
 /* User release a course */
-router.get("/release/:courseID", UserController.releaseCourse)
+router.get("/release/:courseID", userCheck, UserController.releaseCourse)
 
 /* User dashboard */
-router.get("/dashboard", UserController.dashboard)
+router.get("/dashboard", userCheck, UserController.dashboard)
 module.exports = router;

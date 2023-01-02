@@ -1,5 +1,6 @@
 const express = require("express");
 const PagesController = require("../controllers/PageController");
+const {userCheck} = require("../middlewares/auth");
 const router = express.Router();
 
 router.get("/", PagesController.getHome);

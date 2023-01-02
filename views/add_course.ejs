@@ -15,14 +15,24 @@
             </li>
             <li class="list-inline-item"><span class="text-white">|</span></li>
             <li class="list-inline-item">
+              <% if(!course) { %>
               <a
                 href="/courses/add"
                 class="text-color text-uppercase text-sm letter-spacing"
                 >Add Course</a
               >
+              <% } else { %>
+              <a
+                href="/courses/edit/<%= course.id %>"
+                class="text-color text-uppercase text-sm letter-spacing"
+                >Edit Course</a
+              >
+              <% } %>
             </li>
           </ul>
-          <h1 class="text-lg text-white mt-2">Add Course</h1>
+          <h1 class="text-lg text-white mt-2">
+            <% if(!course) { %> Add Course <% } else { %> Edit Course <% } %>
+          </h1>
         </div>
       </div>
     </div>
