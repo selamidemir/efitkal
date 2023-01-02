@@ -26,7 +26,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(fileupload());
-app.use(methodOverride("_method"));
+app.use(
+  methodOverride('_method', {
+    methods: ['POST', 'GET'],
+  })
+);
 
 mongoose.set("strictQuery", false);
 mongoose

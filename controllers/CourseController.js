@@ -7,7 +7,7 @@ exports.courses = async (req, res) => {
   try {
     const filtre = {};
     const courses = await Course.find(filtre)
-      .populate("instructer")
+      .populate("instructor")
       .sort({ createdAt: -1 });
     res.render("course", {
       title: "Courses - EFitKal",
@@ -16,6 +16,7 @@ exports.courses = async (req, res) => {
       error: "",
     });
   } catch (err) {
+    console.log(err);
     res.redirect("/");
   }
 };
@@ -36,7 +37,7 @@ exports.getCourse = async (req, res) => {
       });
     } else res.redirect("/courses");
   } catch (err) {
-    console.log("HATA : ", err)
+    console.log("HATA : ", err);
     res.redirect("/");
   }
 };
@@ -47,7 +48,6 @@ exports.create = (req, res) => {
     const file = req.files.photo;
     const path = process.cwd() + "/public/uploads";
     if (!result.isEmpty || !file) throw new Error("Some fields are wrong.");
-    console.log(path);
     if (!fs.existsSync(path))
       fs.mkdir(path, (err) => {
         if (err) {
@@ -61,7 +61,7 @@ exports.create = (req, res) => {
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
-        instructer: user._id,
+        instructor: user._id,
         photo: file.name,
       };
       await Course.create(courseInfo);
@@ -80,7 +80,14 @@ exports.create = (req, res) => {
 exports.update = async (req, res) => {};
 
 exports.delete = async (req, res) => {
-  res.send("delete")
+  const courseID = req.params.id;
+  try {
+    await Course.findByIdAndRemove(courseID);
+    res.redirect("/courses");
+  } catch (err) {
+    console.log(err);
+    res.status(500).redirect("/courses/courseID");
+  }
 };
 
 exports.add = (req, res) => {
@@ -92,5 +99,5 @@ exports.add = (req, res) => {
 };
 
 exports.edit = (req, res) => {
-  res.send(req.params.id)
+  res.send(req.params.id);
 };
